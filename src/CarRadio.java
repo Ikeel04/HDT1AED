@@ -61,6 +61,10 @@ public class CarRadio implements IRadio {
     public void setFavFrequency(int button) {
         if (button >= 1 && button <= 12) {
             favFrequencies[button - 1] = currentFrequency;
+            // Ajustar la frecuencia guardada en modo AM
+            if (!AMFMState) {
+                favFrequencies[button - 1] -= 0.2f;
+            }
         }
     }
 
@@ -68,8 +72,10 @@ public class CarRadio implements IRadio {
     public float getFavFrequency(int button) {
         if (button >= 1 && button <= 12) {
             return favFrequencies[button - 1];
+        } else {
+            // Devolver algún valor predeterminado si el botón no está en el rango válido
+            return 0.0f;
         }
-        return 0.0f; // Default value if button is out of range
     }
 
     @Override

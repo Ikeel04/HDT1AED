@@ -27,11 +27,9 @@ public class CarRadioTest {
     @org.junit.Test
     public void testToggleAMFM() {
         CarRadio radio = new CarRadio();
-    
         radio.toogleAMFM();
         assertFalse(radio.getStateAMFM());
         assertEquals(87.9f, radio.getCurrentFrequency(), 0.2f);
-    
         radio.toogleAMFM();
         assertTrue(radio.getStateAMFM());
         assertEquals(530.0f, radio.getCurrentFrequency(), 0.2f);
