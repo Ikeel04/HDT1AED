@@ -33,17 +33,31 @@ public class CarRadio implements IRadio {
 
     @Override
     public void nextFrequency() {
-        currentFrequency += (AMFMState && currentFrequency < AM_MAX_FREQUENCY) ? 10.0f : 0.2f;
-        if (AMFMState && currentFrequency > FM_MAX_FREQUENCY) {
-            currentFrequency = AM_MIN_FREQUENCY;
+        if (AMFMState) {
+            currentFrequency += 10.0f;
+            if (currentFrequency > AM_MAX_FREQUENCY) {
+                currentFrequency = AM_MIN_FREQUENCY;
+            }
+        } else {
+            currentFrequency += 0.2f;
+            if (currentFrequency > FM_MAX_FREQUENCY) {
+                currentFrequency = FM_MIN_FREQUENCY;
+            }
         }
     }
 
     @Override
     public void previousFrequency() {
-        currentFrequency -= (AMFMState && currentFrequency > AM_MIN_FREQUENCY) ? 10.0f : 0.2f;
-        if (AMFMState && currentFrequency < AM_MIN_FREQUENCY) {
-            currentFrequency = FM_MAX_FREQUENCY;
+        if (AMFMState) {
+            currentFrequency -= 10.0f;
+            if (currentFrequency < AM_MIN_FREQUENCY) {
+                currentFrequency = AM_MAX_FREQUENCY;
+            }
+        } else {
+            currentFrequency -= 0.2f;
+            if (currentFrequency < FM_MIN_FREQUENCY) {
+                currentFrequency = FM_MAX_FREQUENCY;
+            }
         }
     }
 
