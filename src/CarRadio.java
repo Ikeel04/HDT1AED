@@ -3,14 +3,16 @@ public class CarRadio implements IRadio {
     private boolean state;
     private boolean AMFMState;
     private float[] favFrequencies;
-    private float currentAM;
-    private float currentFM;
+    private float currentFrequency;
+    private final float AM_MIN_FREQUENCY = 530.0f;
+    private final float AM_MAX_FREQUENCY = 1610.0f;
+    private final float FM_MIN_FREQUENCY = 87.9f;
+    private final float FM_MAX_FREQUENCY = 107.9f;
 
     public CarRadio() {
         state = false;
         AMFMState = true; // Default to AM mode
-        currentAM = 530.0f; // AM default value
-        currentFM = 87.9f; // FM default value
+        currentFrequency = AM_MIN_FREQUENCY; // Default frequency
         favFrequencies = new float[12]; // Buttons amount
     }
 
@@ -31,85 +33,33 @@ public class CarRadio implements IRadio {
 
     @Override
     public void nextFrequency() {
-        if (AMFMState == false && currentFM < 107.9f) {
-            currentFM += 0.2f;
-
-        } else if (AMFMState == false && currentFM >= 107.9f) {
-            currentFM = 87.9f;
+        currentFrequency += (AMFMState && currentFrequency < AM_MAX_FREQUENCY) ? 10.0f : 0.2f;
+        if (AMFMState && currentFrequency > FM_MAX_FREQUENCY) {
+            currentFrequency = AM_MIN_FREQUENCY;
         }
-
-        if (AMFMState == true && currentAM < 1610.0f) {
-            currentAM += 10.0f;
-        } else if (AMFMState == true && currentAM >= 1610.0f) {
-            currentAM = 530.0f;
-        }
-
-        if (AMFMState == true && currentAM < 540.0f) {
-            currentAM += 10.0f;
-        } else if (AMFMState == true && currentAM >= 540.0f) {
-            currentAM = 550.0f;
-        }
-
-        if (AMFMState == true && currentAM < 560.0f) {
-            currentAM += 10.0f;
-        } else if (AMFMState == true && currentAM >= 560.0f) {
-            currentAM = 570.0f;
-        }
-
     }
 
     @Override
     public void previousFrequency() {
-        if (AMFMState == false && currentFM < 107.9f) {
-            currentFM -= 0.2f;
-        } else if (AMFMState == false && currentFM >= 107.9f) {
-            currentFM -= 0.2f;  // Decrement the FM frequency
-        }
-    
-        if (AMFMState == true && currentAM < 530.0f) {
-            currentAM -= 10f;
-        } else if (AMFMState == true && currentAM >= 530.0f) {
-            currentAM = 1610.0f;
-        }
-
-        if (AMFMState == true && currentAM < 530.0f) {
-            currentAM -= 10f;
-        } else if (AMFMState == true && currentAM >= 540.0f) {
-            currentAM = 530.0f;
-        }
-
-        if (AMFMState == true && currentAM < 530.0f) {
-            currentAM -= 10f;
-        } else if (AMFMState == true && currentAM >= 560.0f) {
-            currentAM = 550.0f;
+        currentFrequency -= (AMFMState && currentFrequency > AM_MIN_FREQUENCY) ? 10.0f : 0.2f;
+        if (AMFMState && currentFrequency < AM_MIN_FREQUENCY) {
+            currentFrequency = FM_MAX_FREQUENCY;
         }
     }
-    
 
     @Override
     public float getCurrentFrequency() {
-        if (AMFMState = true) {
-            return currentAM;
-        } else {
-            return currentFM;
-        }
+        return currentFrequency;
     }
 
     @Override
     public void setFavFrequency(int button) {
-        if (AMFMState == true)
-            favFrequencies[button - 1] = currentAM;
-        else
-            favFrequencies[button - 1] = currentFM;
+        favFrequencies[button - 1] = currentFrequency;
     }
 
     @Override
     public float getFavFrequency(int button) {
-        if (button >= 1 && button <= 12) {
-            return favFrequencies[button - 1];
-        } else {
-            return 0.0f;
-        }
+        return (button >= 1 && button <= 12) ? favFrequencies[button - 1] : 0.0f;
     }
 
     @Override
