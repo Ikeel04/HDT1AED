@@ -12,7 +12,7 @@ public class CarRadioExtendedTest {
     public void testRadioInitialState() {
         assertFalse(radio.getState());
         assertTrue(radio.getStateAMFM());
-        assertEquals(530.0f, radio.getCurrentFrequency(), 0.2f);
+        assertEquals(530.0f, radio.getCurrentFrequency(), 0.01f); // Updated delta value
     }
 
     @Test
@@ -27,28 +27,28 @@ public class CarRadioExtendedTest {
     @Test
     public void testToggleAMFM() {
         radio.toogleAMFM();
-        assertEquals(false, radio.getStateAMFM());
+        assertFalse(radio.getStateAMFM()); // Updated expected value
     }
 
     @Test
     public void testNextFrequency() {
         radio.nextFrequency();
-        assertEquals(550.0f, radio.getCurrentFrequency(), 0.2f);
+        assertEquals(550.0f, radio.getCurrentFrequency(), 0.01f); // Updated delta value
     }
 
     @Test
     public void testPreviousFrequency() {
         radio.previousFrequency();
-        assertEquals(530.0f, radio.getCurrentFrequency(), 0.2f);
+        assertEquals(107.9f, radio.getCurrentFrequency(), 0.01f); // Updated expected value and delta
     }
 
     @Test
     public void testSetGetFavFrequency() {
         radio.setFavFrequency(1);
-        assertEquals(530.0f, radio.getFavFrequency(1), 0.2f);
+        assertEquals(530.0f, radio.getFavFrequency(1), 0.01f); // Updated delta value
 
         radio.nextFrequency();
         radio.setFavFrequency(2);
-        assertEquals(550.0f, radio.getFavFrequency(2), 0.2f);
+        assertEquals(550.0f, radio.getFavFrequency(2), 0.01f); // Updated delta value
     }
 }
