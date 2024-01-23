@@ -17,7 +17,7 @@ public class RadioApp {
             System.out.println("0. Salir");
 
             int choice = scanner.nextInt();
-            scanner.nextLine();  // Consume the newline character
+            scanner.nextLine(); // Consume the newline character
 
             switch (choice) {
                 case 1:
@@ -26,7 +26,7 @@ public class RadioApp {
                     break;
                 case 2:
                     carRadio.toogleAMFM();
-                    System.out.println("Modo cambiado a " + (carRadio.getStateAMFM() ? "FM" : "AM"));
+                    System.out.println("Modo cambiado a " + (carRadio.getStateAMFM() ? "AM" : "FM"));
                     break;
                 case 3:
                     carRadio.nextFrequency();
@@ -42,7 +42,8 @@ public class RadioApp {
                     System.out.println("Ingrese el número de botón (1-12) para seleccionar la emisora:");
                     int buttonToSelect = scanner.nextInt();
                     float selectedFrequency = carRadio.getFavFrequency(buttonToSelect);
-                    System.out.println("Emisora seleccionada desde el botón " + buttonToSelect + ": " + selectedFrequency);
+                    System.out.println(
+                            "Emisora seleccionada desde el botón " + buttonToSelect + ": " + selectedFrequency);
                     break;
                 case 6:
                     carRadio.tooglePowerOffOn();
