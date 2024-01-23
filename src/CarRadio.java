@@ -49,17 +49,17 @@ public class CarRadio implements IRadio {
     public void previousFrequency() {
         if (AMFMState == false && currentFM < 107.9f) {
             currentFM -= 0.2f;
-
         } else if (AMFMState == false && currentFM >= 107.9f) {
-            currentFM = 87.9f;
+            currentFM -= 0.2f;  // Decrement the FM frequency
         }
-
+    
         if (AMFMState == true && currentAM < 530.0f) {
             currentAM -= 10f;
         } else if (AMFMState == true && currentAM >= 530.0f) {
             currentAM = 1610.0f;
         }
     }
+    
 
     @Override
     public float getCurrentFrequency() {
