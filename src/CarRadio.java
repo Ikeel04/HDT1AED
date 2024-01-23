@@ -43,6 +43,19 @@ public class CarRadio implements IRadio {
         } else if (AMFMState == true && currentAM >= 1610.0f) {
             currentAM = 530.0f;
         }
+
+        if (AMFMState == true && currentAM < 540.0f) {
+            currentAM += 10.0f;
+        } else if (AMFMState == true && currentAM >= 540.0f) {
+            currentAM = 550.0f;
+        }
+
+        if (AMFMState == true && currentAM < 560.0f) {
+            currentAM += 10.0f;
+        } else if (AMFMState == true && currentAM >= 560.0f) {
+            currentAM = 570.0f;
+        }
+
     }
 
     @Override
@@ -57,6 +70,18 @@ public class CarRadio implements IRadio {
             currentAM -= 10f;
         } else if (AMFMState == true && currentAM >= 530.0f) {
             currentAM = 1610.0f;
+        }
+
+        if (AMFMState == true && currentAM < 530.0f) {
+            currentAM -= 10f;
+        } else if (AMFMState == true && currentAM >= 540.0f) {
+            currentAM = 530.0f;
+        }
+
+        if (AMFMState == true && currentAM < 530.0f) {
+            currentAM -= 10f;
+        } else if (AMFMState == true && currentAM >= 560.0f) {
+            currentAM = 550.0f;
         }
     }
     
