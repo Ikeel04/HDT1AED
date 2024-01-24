@@ -22,6 +22,7 @@ public class CarRadioTest {
         assertEquals(530.0f, radio.getCurrentFrequency(), 0.2f); // Updated delta value
     }
 
+    
     /**
      * Prueba para alternar el encendido y apagado de la radio.
      */
