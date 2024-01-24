@@ -2,6 +2,13 @@ import java.util.Scanner;
 
 public class RadioApp {
 
+    /**
+     * Función principal para controlar la radio del coche. Muestra un menú de opciones para interactuar con la radio,
+     * toma la entrada del usuario y ejecuta la acción correspondiente.
+     *
+     * @param  args  los argumentos de la línea de comandos
+     * @return       void
+     */
     public static void main(String[] args) {
         CarRadio carRadio = new CarRadio();
         Scanner scanner = new Scanner(System.in);
