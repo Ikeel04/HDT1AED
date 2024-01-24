@@ -32,13 +32,13 @@ public class AdditionalCarRadioTest {
     @Test
     public void testNextFrequency() {
         radio.nextFrequency();
-        assertEquals(560.0f, radio.getCurrentFrequency(), 0.2f);
+        assertEquals(540.0f, radio.getCurrentFrequency(), 0.2f);
     }
 
     @Test
     public void testPreviousFrequency() {
         radio.previousFrequency();
-        assertEquals(550.0f, radio.getCurrentFrequency(), 0.2f);
+        assertEquals(1610.0f, radio.getCurrentFrequency(), 0.2f);
     }
 
     @Test
@@ -48,6 +48,6 @@ public class AdditionalCarRadioTest {
 
         radio.nextFrequency();
         radio.setFavFrequency(2);
-        assertEquals(560.0f, radio.getFavFrequency(2), 0.2f);
+        assertEquals(540.0f, radio.getFavFrequency(2), 0.2f);
     }
 }

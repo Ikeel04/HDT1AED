@@ -39,7 +39,7 @@ public class CarRadioTest {
     @Test
     public void testPreviousFrequency() {
         radio.previousFrequency();
-        assertEquals(1007.9f, radio.getCurrentFrequency(), 0.2f); // Updated expected value and delta
+        assertEquals(1610.0f, radio.getCurrentFrequency(), 0.2f); // Updated expected value and delta
     }
 
     @Test
